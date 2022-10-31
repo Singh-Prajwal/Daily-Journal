@@ -1,0 +1,31 @@
+<%-include("partials/header")-%>
+<h3>Create</h3>
+<form action="compose" method="post" autocomplete="off">
+  <div class="blog-post">
+    <h6>Title</h6>
+    <input type="text" name="postTitle" placeholder="Add Title" class="blog-post-title form-control">
+
+
+
+
+    <h6>Post</h6>
+    <textarea name="postText" placeholder="Write something.." style="height:150px" class="blog-post-meta form-control"></textarea>
+    <br>
+    <br>
+    <button type="submit" name="addPost" class="btn btn-primary">Publish</button>
+  </div>
+  <% if(Post_title.length>0){ %>
+  <h2>Blogs:</h2>
+  <br><br>
+
+  <%  }  %>
+
+</form>
+<%   for(let  i=0;i<Post_title.length;i++){ %>
+
+<h4><%=  Post_title[i]   %></h4>
+
+
+<p><%=   Post_content[i]   %></p>
+<% } %>
+<%-include("partials/footer")-%>

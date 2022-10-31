@@ -1,0 +1,103 @@
+.container-fluid {
+  padding-top: 70px;
+}
+
+body {
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif
+    /*rtl:Amiri, Georgia, "Times New Roman", serif*/
+  ;
+}
+
+body h1, h2, h3, h4, h5, h6, p, label {
+  color: darkslategray;
+}
+
+.navbar {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border: 0;
+  border-radius: 0;
+  margin-bottom: 0;
+  font-size: 12px;
+  letter-spacing: 5px;
+}
+
+.navbar-nav li a:hover {
+  color: #1abc9c !important;
+}
+
+.contactContainer {
+  text-align: justify;
+}
+
+.footer-padding {
+  --padding-bottom: 60px;
+}
+
+.footer {
+  position: fixed;
+  text-align: center;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #1abc9c;
+}
+
+.footer p {
+  margin-top: 25px;
+  font-size: 12px;
+  color: #fff;
+}
+
+.blog-post {
+  margin-bottom: 4rem;
+}
+
+.blog-post-title {
+  font-size: 1.2rem;
+  width: 70vw;
+}
+
+.blog-post-meta {
+  margin-bottom: 1rem;
+  color: #727272;
+  width: 70vw;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+.form-signin {
+  text-align: center;
+  padding: 15px;
+}
+
+.form-signin btn {
+  margin-left: 15px;
+  margin-right: 15px
+}
+
+.form-signin input {
+  border-radius: 10px margin:10px
+}
+
+.form-signin .form-container {
+  margin-left: 400px;
+  margin-right: 400px;
+}
+
+.mandatory {
+  color: #C34900;
+}
+
+.form-signin input[type="checkbox"] {
+  margin-right: 5px
+}

@@ -1,0 +1,30 @@
+<%-include("partials/header")-%>
+
+<div class="form-signin">
+  <h2>Please sign in</h2>
+
+  <form action="/login" method="post" text-align="center">
+
+    <br>
+    <div class="form-container">
+
+
+      <label>Name <span class="mandatory">*</span></label>
+      <input type="text" name="name" class="form-control" required>
+      <br>
+
+      <label>Email <span class="mandatory">*</span></label>
+      <input type="email" name="Username" class="form-control" required>
+      <br>
+
+      <label>Password <span class="mandatory">*</span></label>
+      <input type="password" name="password" class="form-control" required>
+
+      <p><input type="checkbox" name="checkbox">Remember me</p> <br><br>
+    </div>
+    <button type="submit" name="Login" class="btn btn-primary">Login</button>
+
+  </form>
+
+</div>
+<%-include("partials/footer")-%>
