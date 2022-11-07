@@ -1,0 +1,28 @@
+<%-include("partials/header")-%>
+<div class="container">
+
+
+<h2>HOME</h2>
+<p><%=text1%></p>
+
+</div>
+<div class="container-fluid">
+
+
+
+
+  <% if(Post.length>0) {%>
+      <h3>Composed</h3>
+      <br>
+    <% } %>
+
+   <% Post.forEach(function(num){ %>
+     <h3><%= num.title %></h3>
+     <p>
+       <%= num.content.substring(0,100)+"..."%>
+       <a href="post/<%=num.title%>">Read More</a>
+     </p>
+   <%  }); %>
+
+</div>
+<%-include("partials/footer")-%>

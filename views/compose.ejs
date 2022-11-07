@@ -1,0 +1,36 @@
+<%-include("partials/header")-%>
+<div class="container-fluid">
+
+
+<h3>Create</h3>
+<form action="compose" method="post" autocomplete="off">
+  <div class="blog-post">
+    <label>Title</label>
+    <input type="text" name="postTitle" placeholder="Add Title" class="blog-post-title form-control">
+
+
+
+
+    <label>Content</label>
+    <textarea name="postText" placeholder="Write something.." style="height:150px" class="blog-post-meta form-control"></textarea>
+    <br>
+    <br>
+    <button type="submit" name="addPost" class="btn btn-primary">Publish</button>
+  </div>
+</form>
+
+<% if(Post.length>0) {%>
+    <h3>Composed</h3>
+    <br>
+  <% } %>
+
+ <% Post.forEach(function(num){ %>
+   <h3><%= num.title %></h3>
+   <p><%= num.content.substring(0,100)+"..."%>
+   <a href="post/<%=num.title%>">Read More</a></p>
+ <%  }); %>
+
+
+
+</div>
+<%-include("partials/footer")-%>
