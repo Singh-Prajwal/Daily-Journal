@@ -6,7 +6,7 @@ const _=require('lodash');
 
 
 const homeStartingContent = "This is the home pages of this awesome Blogging website. Now, without any delay welcome guys and go Explore!";
-const aboutContent = "Hi! I am prajwal singh, Btech ECE (2022) graduate from USICT and loves to design and to code in multilingual like C++, HTML, CSS, Javascript, Nodejs,Reactjs ,Angular. I am looking for fresher position as a software developer role.";
+const aboutContent = "Hi! I am prajwal singh, Btech ECE (2022) graduate from USICT and loves to design and to code in multilingual like C++, HTML, CSS, Javascript, Nodejs,Reactjs ,Angular.";
 const contactContent = "Let's communicate";
 
 
