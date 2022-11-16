@@ -27,7 +27,7 @@
  <% Post.forEach(function(num){ %>
    <h3><%= num.title %></h3>
    <p><%= num.content.substring(0,100)+"..."%>
-   <a href="post/<%=num.title%>">Read More</a></p>
+   <a href="post/<%=num._id%>">Read More</a></p>
  <%  }); %>
 
 

@@ -2,13 +2,27 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const app = express();
-const _=require('lodash');
+const mongoose = require('mongoose');
 
 
 const homeStartingContent = "This is the home pages of this awesome Blogging website. Now, without any delay welcome guys and go Explore!";
-const aboutContent = "Hi! I am prajwal singh, Btech ECE (2022) graduate from USICT and loves to design and to code in multilingual like C++, HTML, CSS, Javascript, Nodejs,Reactjs ,Angular.";
+const aboutContent = "Hi! I am prajwal singh, Btech ECE (2022) graduate from USICT and loves to design and to code in multilingual like C++, HTML, CSS, Javascript, Nodejs,Reactjs ,Angular. I am looking for fresher position as a software developer role.";
 const contactContent = "Let's communicate";
 
+mongoose.connect("mongodb+srv://Prajwal226:Lpassword8226@cluster0.qmk0dry.mongodb.net/?retryWrites=true&w=majority")
+const postsSchema=new mongoose.Schema({
+  title:String,
+  content:String
+});
+
+const profilesSchema= new mongoose.Schema({
+  name:String,
+  username:String,
+  password:String
+});
+
+const Profile=mongoose.model("Profile",profilesSchema);
+const Post= mongoose.model("Post",postsSchema);
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({
@@ -23,10 +37,13 @@ app.listen(3000, function() {
 
 
 app.get("/", function(req, res) {
-  res.render("home", {
-    text1: homeStartingContent,
-    Post:posts
-  });
+  Post.find(function(err,result){
+    res.render("home", {
+      text1: homeStartingContent,
+      Post:result
+    });
+  })
+
 })
 
 app.get("/about", function(req, res) {
@@ -35,46 +52,46 @@ app.get("/about", function(req, res) {
   });
 })
 
-app.get("/post/:postName",function(req,res){
+app.get("/posts/:postId",function(req,res){
 
-  const requiredTitle=_.lowerCase(req.params.postName);
-  posts.forEach(function(post) {
-    const storedTitle=_.lowerCase(post.title);
-    const storedPost=post.content;
+  const requiredPostId=req.params.postId; 
+  Post.findOne({id:requiredPostId},function(err,post){
+    if(err){
+      throw err;
+      res.redirect("/");
+    }
+    res.render("post",{
+      title:post.title,
+      content:post.content
+    });
 
-        if(storedTitle===requiredTitle){
-          res.render('post',{
-            title:storedTitle ,
-            content:storedPost
-          })
-        } 
   });
-})
+});
 
 
 let searchedValue = "";
 app.get("/search", function(req, res) {
-  posts.forEach(function(post) {
-    const storedTitle=_.lowerCase(post.title);
-    const storedPost=post.content;
-
-        if(storedTitle===searchedValue){
-          res.render('search',{
-            title:storedTitle ,
-            content:storedPost
-          })
-        }
+  Post.find(function(err,post){
+    if(err) throw err;
+    if(post.title===searchedValue){
+      res.render('search',{
+        title:post.title,
+        content:post.content,
+        postId:post._id
+      });
+    }
   });
+
   res.render('search',{
     title:"",
     content:""
   })
-})
+});
 
 
 
 app.post("/search", function(req, res) {
-  searchedValue = _.lowerCase(req.body.searchbar);
+  searchedValue = req.body.searchbar;
   res.redirect("/search");
 })
 
@@ -87,10 +104,15 @@ app.get("/contact", function(req, res) {
 
 
 app.get("/compose", function(req, res) {
-  res.render("compose", {
-    Post:posts,
-  });
-})
+  Post.find(function(err,posts){
+    if(err) throw err;
+    else{
+      res.render("compose", {
+        Post:posts
+      });
+    }
+  })
+});
 
 
 let posts = [];
@@ -102,6 +124,11 @@ app.post("/compose", function(req, res) {
     content:req.body.postText
   }
   posts.push(post);
+  const postdb=new Post({
+    title:req.body.postTitle,
+    content:req.body.postText
+  });
+  postdb.save();
 
   res.redirect("/compose");
 });
@@ -131,8 +158,14 @@ let profile = {
 
 app.post("/login", function(req, res) {
   profile.name = req.body.name;
-  profile.username = req.body.Username;
-  profile.password = req.body.password;
+  profile.username = req.body.useremail;
+  profile.password = req.body.userpassword;
+  let profiledb =new Profile({
+    name: req.body.name,
+    username: req.body.useremail,
+    password: req.body.userpassword
+  });
+  profiledb.save();
 
   res.redirect("/sucess");
 });

@@ -16,11 +16,13 @@
       <br>
     <% } %>
 
-   <% Post.forEach(function(num){ %>
-     <h3><%= num.title %></h3>
+   <% Post.forEach(function(post){ %>
+     <% let id=post._id%>
+     <h3><%= post.title %></h3>
      <p>
-       <%= num.content.substring(0,100)+"..."%>
-       <a href="post/<%=num.title%>">Read More</a>
+       <%= post.content.substring(0,100)+"..."%>
+
+       <a href="posts/<%=id%>">Read More</a>
      </p>
    <%  }); %>
 
